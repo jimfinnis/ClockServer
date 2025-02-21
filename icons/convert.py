@@ -80,7 +80,6 @@ def convert(file):
     
     file = file[:3]
     s = f"const unsigned short _{file}_data[{width*height}] PROGMEM={{\n"
-    s += f"const struct icondata _{file}= {{ {margin}, {width},{height}, {origwidth},{origheight}, _{file}_data }};\n"
 
     for y in range(height):
         lst = []
@@ -97,6 +96,7 @@ def convert(file):
         s += ",".join(lst)+",\n"
         
     s+="};"
+    s += f"const struct icondata _{file}= {{ {margin}, {width},{height}, {origwidth},{origheight}, _{file}_data }};\n"
     return s
 
 print(header)
